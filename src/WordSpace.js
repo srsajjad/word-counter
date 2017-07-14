@@ -25,6 +25,10 @@ class WordSpace extends React.Component {
   handleFile (e) {
     let self = this
     let myFile = e.target.files[0]
+    if(!myFile.name.endsWith('.txt')){
+      alert('You File gotta be a Text File Man !')
+      return
+    }
     let fileReader = new FileReader()
     fileReader.onload = function (event) {
       Store.areaDefault = `${self.areaInput.value} ${event.target.result}`
@@ -44,11 +48,12 @@ class WordSpace extends React.Component {
             cols='30'
             rows='10'
           />
+          <br /><br />
           <button onClick={this.handleClick.bind(this)}>
             Count Words
-          </button>
-          <input onChange={this.handleFile.bind(this)} type='file' />
-          <pre>{Store.final}</pre>
+          </button><br /><br />
+          <input onChange={this.handleFile.bind(this)} type='file' /><br />
+          <pre style={{ fontSize: '17px' }}>{Store.final}</pre>
         </form>
       </div>
     )
